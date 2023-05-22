@@ -1,4 +1,8 @@
     <!-- Humberger End -->
+    @php
+        $loaithucung = App\Models\loaiTCmodels::latest()->get()->all();
+        // dd($loaithucung)
+    @endphp
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -41,10 +45,12 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{route('home')}}">TRANG CHỦ</a></li>
-                            <li><a href="{{route('grid')}}">CHÓ</a></li>
-                            <li><a href="{{route('grid')}}">MÈO</a></li>
-                            <li><a href="{{route('grid')}}">CHIM</a></li>
-                            <li><a href="{{route('grid')}}">CÁ</a></li>
+                            @foreach ($loaithucung as $loaiTCmodels)
+                            {{-- {{ $loaiTCmodels }} --}}
+                                 <li><a href="{{route('dogs')}}">{{$loaiTCmodels->TenLoaiThuCung }}</a></li>
+                            @endforeach
+
+
                             <li><a href="{{route('blog')}}">Tin Tức</a></li>
                         </ul>
                     </nav>

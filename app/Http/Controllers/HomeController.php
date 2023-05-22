@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GiongThuCungmodels;
 use App\Models\loaiTCmodels;
 use App\Models\ThuCungmodels;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -14,12 +16,15 @@ class HomeController extends Controller
     public function grid(){
         $loaiTC =  loaiTCmodels::all();
         $sps = ThuCungmodels::limit(6)->get();
+        $acp = GiongThuCungmodels::limit(6)->get();
         return view('grid',['ThuCung' => $sps,'loaiTC' => $loaiTC]);
     }
 
     public function category(){
         return view('category');
     }
+
+
     // public function details(){
     //     $loaiTC =  loaiTCmodels::all();z
     //     $sps = ThuCungmodels::limit(6)->get();
@@ -32,9 +37,21 @@ class HomeController extends Controller
     }
     public function LoaiTC(){
         $loaiTC =  loaiTCmodels::all();
-        $sps =  ThuCungmodels::With('category')->get();
-        return view('loaiTC',['ThuCung' =>  $sps , 'loaiTC' => $loaiTC]);
+        $sps =  ThuCungmodels::With('MaGiongThuCung')->get();
+        return view('index',['ThuCung' =>  $sps , 'loaiTC' => $loaiTC]);
     }
+
+    // public function categoryType(){
+    //     $ThuCung = DB::table('thucung')
+    //     ->join('giongthucung', 'thucung.MaGiongThuCung', 'giongthucung.MaGiongThuCung')
+    //     ->join('loaithucung', 'loaithucung.MaLoaiThuCung', 'giongthucung.MaLoaiThuCung')
+    //     ->select('thucung.*')
+    //     ->where('loaithucung.MaLoaiThuCung', 1)
+    //     ->get();
+    //     // dd($ThuCung);
+    //     return view('dogs', compact('ThuCung'));
+    // }
+
 
 
     public function cart(){

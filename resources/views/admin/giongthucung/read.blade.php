@@ -28,7 +28,7 @@
                                 <thead>
                                     <tr>
                                     <th>Mã Giống</th>
-                                    <th>Tên Loại</th>
+                                    <th>Mã Loại</th>
                                     <th>Tên Giống</th>
                                     <th>Ghi Chú</th>
                                     </tr>
@@ -38,7 +38,7 @@
                                <tr>
 
                                         <td>{{ $db->MaGiongThuCung }}</td>
-                                        <td>{{ $db->TenLoaiThuCung }}</td>
+                                        <td>{{ $db->MaLoaiThuCung }}</td>
                                         <td>{{ $db->TenGiongThuCung }}</td>
                                         <td>{{ $db->GhiChu }}</td>
                                     </tr>

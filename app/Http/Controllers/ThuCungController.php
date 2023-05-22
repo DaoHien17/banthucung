@@ -70,8 +70,9 @@ class ThuCungController extends Controller
     public function show(string $id)
     {
         // $db =loaiTCmodels::findOrFail($id); // lấy dữ liệu theo id
-        $sp = ThuCungmodels::where('thucung_id', $id)->first();
-        return view('admin.thucung.read', ['sp'=>$sp]); // trả về view và truyền biến $data vào
+        $sp = ThuCungmodels::where('MaThuCung', $id)->first();
+        // dd($sp);
+        return view('admin.thucung.read', ['db'=>$sp]); // trả về view và truyền biến $data vào
     }
 
     public function destroy(string $id){

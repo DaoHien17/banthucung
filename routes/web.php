@@ -30,6 +30,7 @@ Route::controller(App\http\Controllers\HomeController::class)->group(function(){
     Route::get('/blog','blog')->name('blog');
     Route::get('/grid','grid')->name('grid');
     Route::get('/details/{id}','details')->name('details');
+    Route::get('/Cac-Giong-Cho','categoryType')->name('dogs');
 
 });
 

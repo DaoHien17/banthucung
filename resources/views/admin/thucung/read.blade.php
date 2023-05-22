@@ -24,7 +24,7 @@
                             Simple Datatable
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped" id="table1">
+                            <table class="table table-striped" id="table1" style="">
                                 <thead>
                                     <tr>
                                     <th>Mã Giống</th>
@@ -33,7 +33,6 @@
                                     <th>Tên Thú Cưng</th>
                                     <th>Mô Tả</th>
                                     <th>Giá Bán</th>
-                                    <th>Số Lượng</th>
                                     <th>Ảnh Tiêu Đề</th>
                                     <th>Ảnh 1</th>
                                     <th>Ảnh 2</th>
@@ -45,14 +44,21 @@
 
                                <tr>
                                         <td>{{$db->MaGiongThuCung}}</td>
-                                        <td>{{$db->TenNCC}}</td>
+                                        <td>{{$db->MaNCC}}</td>
                                         <td>{{$db->MaThuCung}}</td>
                                         <td>{{$db->TenThuCung}}</td>
+                                        <td>{{$db->MoTa}}</td>
+                                        <td>{{$db->Gia}}</td>
+                                        <td>{{$db->AnhTieuDe}}</td>
+                                        <td>{{$db->Anh1}}</td>
+                                        <td>{{$db->Anh2}}</td>
+                                        <td>{{$db->Anh3}}</td>
+                                        <td>{{$db->Anh4}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1158">
-                                <a class="btn btn-primary" href="/admingiongKKKKKKKKKKKKthucung/index">Quay lại</a>
+                                <a class="btn btn-primary" href="/admin76thucung/index">Quay lại</a>
 
                           </div>
                         </div>

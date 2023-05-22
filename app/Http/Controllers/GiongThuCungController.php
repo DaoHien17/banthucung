@@ -36,13 +36,15 @@ class GiongThuCungController extends Controller
     public function show(string $id)
 {
     // $db =loaiTCmodels::findOrFail($id); // lấy dữ liệu theo id
-    $db = GiongThuCungmodels::where('MaLoaiThuCung', $id)->first();
-    return view('admin.giongthucung.read', ['db'=>$db]); // trả về view và truyền biến $data vào
+    $db = GiongThuCungmodels::where('MaGiongThuCung', $id)->first();
+    // dd($db);
+    return view('admin.GiongThuCung.read', ['db'=>$db]); // trả về view và truyền biến $data vào
 }
 
     public function edit(string $id=''){
         // $db=loaiTCmodels::find($id);
-        $db = GiongThuCungmodels::where('MaLoaiThuCung', $id)->first();
+        $db = GiongThuCungmodels::where('MaGiongThuCung', $id)->first();
+
         return view('admin.giongthucung.update',['db'=>$db]);
     }
 
@@ -56,7 +58,7 @@ class GiongThuCungController extends Controller
 
     public function update(Request $request, string $id)
     {
-        GiongThuCungmodels::where('MaLoaiThuCung', $id)->update([
+        GiongThuCungmodels::where('MaGiongThuCung', $id)->update([
             'TenLoaiThuCung' => $request->input('TenLoaiThuCung'),
             'TenGiongThuCung' => $request->input('TenGiongThuCung'),
             'GhiChu' => $request->input('GhiChu'),
