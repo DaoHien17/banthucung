@@ -4,6 +4,18 @@
 @csrf
 <div class="tab-content rounded-bottom">
                       <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1272">
+
+                        <label for="LoaiTC">Loại Thú Cưng</label>
+                        <div class="input-group mb-3"><span class="input-group-text" id="LoaiTC">Loại Thú Cưng</span>
+                            <select class="form-control" name="LoaiTC" id="LoaiTC">
+                                <option value="">-- Chọn loại thú cưng --</option>
+                                @foreach ($loai as $item)
+                                    <option value="{{ $item->MaLoaiThuCung }}">{{ $item->TenLoaiThuCung }}</option>
+                                @endforeach
+                            </select>
+                          {{-- <input class="form-control" type="text" placeholder="Nhap ten" name="MaNCC" aria-label="Username" aria-describedby="basic-addon1"> --}}
+                        </div>
+
                         <label for="MaGiongThuCung">Mã Giống</label>
                         <div class="input-group mb-3"><span class="input-group-text" id="MaGiongThuCung">Mã Giống</span>
                             <select class="form-control" name="MaGiongThuCung" id="MaGiongThuCung">
@@ -18,12 +30,15 @@
                         <div class="input-group mb-3"><span class="input-group-text" id="MaNCC">Nhà Cung Cấp</span>
                             <select class="form-control" name="MaNCC" id="MaNCC">
                                 <option value="">-- Chọn nhà cung cấp --</option>
+                                
                                 @foreach ($ncc as $item)
                                     <option value="{{ $item->MaNCC }}">{{ $item->TenNCC }}</option>
                                 @endforeach
                             </select>
                           {{-- <input class="form-control" type="text" placeholder="Nhap ten" name="MaNCC" aria-label="Username" aria-describedby="basic-addon1"> --}}
                         </div>
+
+
                         {{-- <label for="ThuCung">Mã Thú Cưng</label>
                         <div class="input-group mb-3"><span class="input-group-text" id="ThuCung">Mã Thú Cưng</span>
                           <input class="form-control" type="text" placeholder="Nhap ten" name="ThuCung" aria-label="Username" aria-describedby="basic-addon1">

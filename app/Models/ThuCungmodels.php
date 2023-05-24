@@ -14,23 +14,23 @@ class ThuCungmodels extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    protected $fillable=['MaGiongThuCung', 'MaNCC', 'MaThuCung', 'TenThuCung', 'MoTa', 'Gia', 'SoLuong', 'AnhTieuDe', 'Anh1', 'Anh2', 'Anh3', 'Anh4'];
+    protected $fillable=['MaGiongThuCung', 'MaNCC', 'MaThuCung', 'TenThuCung', 'MoTa', 'Gia', 'SoLuong', 'AnhTieuDe', 'Anh1', 'Anh2', 'Anh3', 'Anh4','MaLoaiThuCung'];
 
 }
 
 
 // app/Models/sale.php
 
-namespace App\Models;
+// namespace App\Models;
 
 
-use Illuminate\Database\Eloquent\Model;
-class Category extends Model
-{
-    protected $table = 'giaban';
+// use Illuminate\Database\Eloquent\Model;
+// class Category extends Model
+// {
+//     protected $table = 'giaban';
 
-    public function thucung()
-    {
-        return $this->hasMany(ThuCungmodels::class);
-    }
-}
+//     public function thucung()
+//     {
+//         return $this->hasMany(ThuCungmodels::class);
+//     }
+// }

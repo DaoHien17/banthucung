@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HoaDonBanmodels extends Model
+class KhachHangmodels extends Model
 {
-    protected $primaryKey = 'Id';
+    protected $primaryKey = 'MaKhachHang';
     use HasFactory;
-    protected $table = 'hoadonban';
+    protected $table = 'khachhang';
     protected $fillable = [
-        'MaKhachHang',
-        'TrangThai',
-        'TongTien',
+        'TenKhachHang',
+        'SĐT',
+        'Email',
         'DiaChi'
     ];
 }

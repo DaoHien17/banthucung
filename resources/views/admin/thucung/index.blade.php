@@ -11,10 +11,10 @@
                                     <thead>
                                         <tr>
                                             <th>Mã Thú Cưng</th>
+                                            <th>Chọn Loại thú Cưng</th>
                                             <th>Tên Giống</th>
                                             <th>Nhà Cung Cấp</th>
                                             <th>Tên Thú Cưng</th>
-                                            <th>Mô Tả</th>
                                             <th>Giá</th>
                                             <th>Trạng Thái</th>
                                             <th>Ảnh Tiêu Đề</th>
@@ -32,11 +32,12 @@
                                         @foreach($sp as $loai)
                                         <tr>
                                                 <td>{{$loai->MaThuCung}}</td>
+                                                <td>{{$loai->MaLoaiThuCung}}</td>
                                                 <td>{{$loai->TenGiongThuCung}}</td>
                                                 <td>{{$loai->TenNCC}}</td>
                                                 <td>{{$loai->TenThuCung}}</td>
-                                                <td>{{$loai->MoTa}}</td>
-                                                <td>{{$loai->Gia}}</td>
+
+                                                <td> {{ number_format($loai->Gia) }} VNĐ</td>
                                                 <td> <?php
                                                     $t = $loai->SoLuong;
                                                     if ($t ==1) {

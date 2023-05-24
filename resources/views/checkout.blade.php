@@ -1,109 +1,61 @@
-@extends('layout')
-@section('content')
+@extends('layouts.frontend')
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Checkout</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Checkout</span>
+@section('content')
+<div class="container px-6 mx-auto">
+    <h3 class="text-2xl font-medium text-gray-700">Thông Tin Thanh Toán</h3>
+    <form action="{{route('cart.checkoutpost')}}" method="post">
+        @csrf
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <header class="card-header">
+                        <h4 class="card-title mt-2">Chi Tiết Đơn Hàng</h4>
+                    </header>
+                    <article class="card-body">
+                        <div class="form-group">
+                            <label>Tên Khách Hàng</label>
+                            <input type="text" class="form-control" name="TenKhachHang">
                         </div>
+
+                        <div class="form-group">
+                            <label>Số Điện Thoại</label>
+                            <input type="text" class="form-control" name="SĐT">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="Email">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Địa Chỉ</label>
+                            <input type="text" class="form-control" name="DiaChi">
+                        </div>
+
+                    </article>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <header class="card-header">
+                                <h4 class="card-title mt-2">ĐƠN HÀNG CỦA BẠN</h4>
+                            </header>
+                            <article class="card-body">
+                                <dl class="dlist-align">
+                                    <dt>Tổng Tiền: </dt>
+                                    <dd class="text-right h5 b"> {{ config('settings.currency_symbol') }}{{ number_format(\Cart::getSubTotal() )}} VNĐ </dd>
+                                </dl>
+                            </article>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <button type="submit" class="subscribe btn btn-success btn-lg btn-block">Đặt Hàng</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-
-    <!-- Checkout Section Begin -->
-    <section class="checkout spad">
-        <div class="container">
-
-            <div class="checkout__form">
-                <h4> Thông Tin Khách Hàng</h4>
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-6">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Họ và Tên <span>*</span></p>
-                                        <input name="hovaten" type="text" >
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Số điện thoại <span>*</span></p>
-                                        <input name="sdt" type="text" >
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="checkout__input">
-                                <p>Địa Chỉ<span>*</span></p>
-                                <input type="text" name="diachi"  placeholder="Tỉnh/Thành Phố, Quận/Huyện,Phường/Xã" class="checkout__input__add">
-
-                            </div>
-                            <div class="checkout__input">
-                                <p>Email<span>*</span></p>
-                                <input name="email" type="email">
-                            </div>
-
-                            <div class="checkout__input">
-                                <p>Địa chỉ nhận hàng</p>
-                                <input name="diachinhan" type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>Ghi chú</p>
-                                <textarea class="form-control" name="ghichu" type="text"></textarea>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="checkout__order">
-                                <h4>ĐƠN HÀNG CỦA BẠN</h4>
-                                <div class="checkout__order__products">Products <span>Total</span></div>
-                                <ul>
-                                    <li>Vegetable’s Package <span>$75.99</span></li>
-                                    <li>Fresh Vegetable <span>$151.99</span></li>
-                                    <li>Organic Bananas <span>$53.99</span></li>
-                                </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="acc-or">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-or">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                    ut labore et dolore magna aliqua.</p>
-                                <div class="checkout__input__checkbox">
-                                    <label for="payment">
-                                        Check Payment
-                                        <input type="checkbox" id="payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <button type="submit" class="site-btn">PLACE ORDER</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    <!-- Checkout Section End -->
+    </form>
+</div>
 @endsection

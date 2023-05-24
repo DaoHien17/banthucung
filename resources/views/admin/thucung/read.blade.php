@@ -49,11 +49,12 @@
                                         <td>{{$db->TenThuCung}}</td>
                                         <td>{{$db->MoTa}}</td>
                                         <td>{{$db->Gia}}</td>
-                                        <td>{{$db->AnhTieuDe}}</td>
-                                        <td>{{$db->Anh1}}</td>
-                                        <td>{{$db->Anh2}}</td>
-                                        <td>{{$db->Anh3}}</td>
-                                        <td>{{$db->Anh4}}</td>
+                                        <td><img style="width:150px" src="{{$db->AnhTieuDe}}" alt=""></td>
+                                        <td><img style="width:150px" src="{{$db->Anh1}}" alt=""></td>
+                                        <td><img style="width:150px" src="{{$db->Anh2}}" alt=""></td>
+                                        <td><img style="width:150px" src="{{$db->Anh3}}" alt=""></td>
+                                        <td><img style="width:150px" src="{{$db->Anh4}}" alt=""></td>
+
                                     </tr>
                                 </tbody>
                             </table>

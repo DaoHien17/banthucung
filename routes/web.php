@@ -30,7 +30,9 @@ Route::controller(App\http\Controllers\HomeController::class)->group(function(){
     Route::get('/blog','blog')->name('blog');
     Route::get('/grid','grid')->name('grid');
     Route::get('/details/{id}','details')->name('details');
-    Route::get('/Cac-Giong-Cho','categoryType')->name('dogs');
+
+    Route::get('/Cac-Giong-Cho/{id?}','categoryType')->name('dogs');
+    route::post('/tim-kiem','TimKiem')->name('search');
 
 });
 
@@ -90,4 +92,6 @@ Route::controller(App\Http\Controllers\CartController::class)->group(function(){
     Route::post('update-cart', 'updateCart')->name('cart.update');
     Route::post('remove', 'removeCart')->name('cart.remove');
     Route::post('clear', 'clearAllCart')->name('cart.clear');
+    Route::get('/checkout','checkoutget')->name('cart.checkoutget');
+    Route::post('/checkout','checkoutpost')->name('cart.checkoutpost');
 });

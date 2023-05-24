@@ -26,58 +26,74 @@ class ThuCungController extends Controller
         $db=GiongThuCungmodels::all();
         $sp = ThuCungmodels::all();
         $ncc = NCCmodels::all();
+        $loai = loaiTCmodels::all();
         // dd($ncc);
-         return view('admin.thucung.create', ['db'=>$db,'sp'=>$sp, 'ncc'=>$ncc]);
+         return view('admin.thucung.create', ['db'=>$db,'sp'=>$sp, 'ncc'=>$ncc,'loai'=>$loai]);
     }
     public function store(Request $request){
-        // loaiTCmodels::create($request->all());
-        ThuCungmodels::create($request->all());
+        ThuCungmodels::create([
+            'MaGiongThuCung' => $request->MaGiongThuCung,
+            'MaNCC' => $request->MaNCC,
+            'TenThuCung' =>$request->TenThuCung,
+            'MoTa' => $request->MoTa,
+            'Gia' => $request->Gia,
+            'SoLuong' => $request->SoLuong,
+            'AnhTieuDe' => $request->AnhTieuDe,
+            'Anh1' => $request->Anh1,
+            'Anh2' => $request->Anh2,
+            'Anh3' => $request->Anh3,
+            'Anh4' => $request->Anh4,
+            'MaLoaiThuCung' => $request->LoaiTC
+        ]);
         return redirect()->route('admin.thucung.index');
     }
 
-    public function edit(string $id=''){
+    public function edit( $id) {
 
-        $db = loaiTCmodels::all();
-        $sp = ThuCungmodels::where('thucung_id', $id)->first();
-        return view('admin.thucung.update',['db'=>$db,'sp'=>$sp]);
+        $db = loaiTCmodels::pluck('TenLoaiThuCung','MaLoaiThuCung');
+        $ncc = NCCmodels::pluck('TenNCC','MaNCC');
+        $sp = DB::table('thucung')
+        ->join('NhaCungCap', 'thucung.MaNCC', '=', 'NhaCungCap.MaNCC' )
+        ->join('GiongThuCung', 'thucung.MaGiongThuCung', '=', 'GiongThuCung.MaGiongThuCung' )
+        ->join('loaithucung', 'thucung.MaLoaiThuCung', '=', 'thucung.MaLoaiThuCung' )
+        ->select('thucung.*', 'NhaCungCap.*', 'GiongThuCung.*','loaithucung.*')
+        ->where('thucung.MaThuCung',$id)
+        ->first();
+
+        return view('admin.thucung.update', ['db' => $db, 'sp' => $sp,'ncc'=>$ncc]);
     }
 
 
+    public function update(Request $request, string $id) {
 
-    public function update(Request $request, string $id)
-    {
         ThuCungmodels::where('MaThuCung', $id)->update([
-
-            // `MaGiongThuCung`, `MaNCC`, `MaThuCung`, `TenThuCung`, `MoTa`, `Gia`, `SoLuong`, `AnhTieuDe`, `Anh1`, `Anh2`, `Anh3`, `Anh4`
-            'MaGiongThuCung'=> $request->input('MaGiongThuCung'),
-            'MaNCC'=> $request->input('MaNCC'),
-            'Anh'=> $request->input('Anh'),
-            'Soluong'=> $request->input('Soluong'),
-            'Gia'=> $request->input('Gia'),
-            'Maluc'=> $request->input('Maluc'),
-            'PhanKhuc'=> $request->input('PhanKhuc'),
-            'VongTuaMay'=> $request->input('VongTuaMay'),
-            'MoMenXoan'=> $request->input('MoMenXoan'),
-            'Giakhuyenmai'=> $request->input('Giakhuyenmai'),
-            'Viewcount'=> $request->input('Viewcount'),
-            'ReducePrice'=> $request->input('ReducePrice'),
-            'updated_at' => now(),
+            'MaGiongThuCung' => $request->MaGiongThuCung,
+            'MaNCC' => $request->MaNCC,
+            'TenThuCung' =>$request->TenThuCung,
+            'MoTa' => $request->MoTa,
+            'Gia' => $request->Gia,
+            'SoLuong' => $request->SoLuong,
+            'AnhTieuDe' => $request->AnhTieuDe,
+            'Anh1' => $request->Anh1,
+            'Anh2' => $request->Anh2,
+            'Anh3' => $request->Anh3,
+            'Anh4' => $request->Anh4,
+            'MaLoaiThuCung' => $request->LoaiTC
         ]);
 
         return redirect()->route('admin.thucung.index');
     }
 
-    public function show(string $id)
-    {
-        // $db =loaiTCmodels::findOrFail($id); // lấy dữ liệu theo id
+
+    public function show(string $id) {
         $sp = ThuCungmodels::where('MaThuCung', $id)->first();
-        // dd($sp);
-        return view('admin.thucung.read', ['db'=>$sp]); // trả về view và truyền biến $data vào
+        return view('admin.thucung.read', ['db' => $sp]);
     }
 
-    public function destroy(string $id){
-        // loaiTCmodels::find($id)->delete();
-        ThuCungmodels::where('thucung_id', $id)->delete();
+
+    public function destroy(string $id) {
+        ThuCungmodels::where('MaThuCung', $id)->delete();
         return redirect()->route('admin.thucung.index');
     }
+
 }

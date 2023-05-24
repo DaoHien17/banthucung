@@ -45,13 +45,14 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{route('home')}}">TRANG CHỦ</a></li>
+                            <li><a href="{{route('blog')}}">Tin Tức</a></li>
                             @foreach ($loaithucung as $loaiTCmodels)
                             {{-- {{ $loaiTCmodels }} --}}
-                                 <li><a href="{{route('dogs')}}">{{$loaiTCmodels->TenLoaiThuCung }}</a></li>
+                                 <li><a href="{{route('dogs').'/'.$loaiTCmodels->MaLoaiThuCung}}">{{$loaiTCmodels->TenLoaiThuCung }}</a></li>
                             @endforeach
 
 
-                            <li><a href="{{route('blog')}}">Tin Tức</a></li>
+
                         </ul>
                     </nav>
                 </div>
@@ -81,9 +82,15 @@
                             <i class="fa fa-bars"></i>
                             <span>Danh Mục</span>
                         </div>
-                         <ul>
-                        <li><a href="/Home/Grid">Chó HUSKY</a></li>
-                        <li><a href="/Home/Grid">Chó SHIBA </a></li>
+                         <ul style="display: none; position: absolute; background-color: white;left: 0;
+                         top: 46px;
+                         width: 100%;
+                         z-index: 9; ">
+                         @foreach ($giongthus as $item)
+                            <li><a href="{{route('dogs').'/'.$item->MaLoaiThuCung}}">{{$item->TenLoaiThuCung }}</a></li>
+                         @endforeach
+
+                        {{-- <li><a href="/Home/Grid">Chó SHIBA </a></li>
                         <li><a href="/Home/Grid">Chó BULL PHÁP</a></li>
                         <li><a href="/Home/Grid">Chó ALASKA </a></li>
                         <li><a href="/Home/Grid">Mèo Anh Lông Dài</a></li>
@@ -92,19 +99,19 @@
                         <li><a href="/Home/Grid">Vẹt</a></li>
                         <li><a href="/Home/Grid">Chích Chòe</a></li>
                         <li><a href="/Home/Grid">Cá Koi</a></li>
-                        <li><a href="/Home/Grid">Cá Rồng</a></li>
+                        <li><a href="/Home/Grid">Cá Rồng</a></li> --}}
 
                     </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
-                     <div class="col-lg-9">
+                     <div class="col-lg-12" style="float: right">
                     <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form>
-
-                                <input type="search" name="SearchString" placeholder="Search" aria-label="Search">
-                                <button type="submit" class="site-btn">Tìm Kiếm</button>
+                        <div class="hero__search__form" >
+                            <form action="{{ route('search') }}" method="POST">
+                                {{csrf_field()}}
+                                <input type="search" name="keywords_submit" placeholder="Search" aria-label="Search">
+                                <button type="submit" name="search_items" value="tìm kiếm" class="site-btn">Tìm Kiếm</button>
                             </form>
                         </div>
                         <div class="hero__search__phone">
@@ -116,15 +123,10 @@
                                 <span>HỖ TRỢ 24/7 </span>
                             </div>
                         </div>
+
                     </div>
                 </div>
-                    <div class="hero__item set-bg" data-setbg="/assets/Content/img/hero/banner_dog.png">
-                        <div class="hero__text">
-                            <h2 style="color:brown">UY TÍN <br />100% Thuần Chủng</h2>
-                            <p>MIỄN PHÍ GIAO HÀNG TOÀN QUỐC</p>
-                            <a href="/Home/Grid" class="primary-btn">Mua Ngay</a>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

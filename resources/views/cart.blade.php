@@ -49,14 +49,14 @@
                                       <input type="hidden" name="id" value="{{ $item->id}}" >
                                     <input type="number" name="quantity" value="{{ $item->quantity }}"
                                     class="w-6 text-center bg-gray-300" />
-                                    <button type="submit" class="px-2 pb-2 ml-2 text-white bg-blue-500">update</button>
+                                    <button type="submit" class="px-2 pb-2 ml-2 text-white bg-blue-500">Update</button>
                                     </form>
                                   </div>
                                 </div>
                               </td>
                               <td class="hidden text-right md:table-cell">
                                 <span class="text-sm font-medium lg:text-base">
-                                    {{ $item->price }} VNĐ
+                                    {{ number_format( $item->price) }} VNĐ
                                 </span>
                               </td>
                               <td class="hidden text-right md:table-cell">
@@ -73,12 +73,14 @@
                           </tbody>
                         </table>
                         <div>
-                         Thành Tiền: {{ Cart::getTotal() }} VNĐ
+                         Thành Tiền: {{  number_format( Cart::getTotal()) }} VNĐ
                         </div>
                         <div>
                           <form action="{{ route('cart.clear') }}" method="POST">
                             @csrf
-                            <button class="px-6 py-2 text-red-800 bg-red-300">Remove All Cart</button>
+                            <button class="px-6 py-2 text-red-800 bg-red-300">Xóa Giỏ Hàng</button>
+                            <br><br>
+                            <a href="{{route('cart.checkoutget')}}" class="px-6 py-2 text-blue-800 bg-blue-300">Đặt Hàng</a>
                           </form>
                         </div>
 
@@ -89,6 +91,8 @@
             </div>
         </main>
     @endsection
+
+
 
 
 

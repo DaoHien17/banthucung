@@ -28,6 +28,7 @@ class LoaiThuCungController extends Controller
 {
     // $db =loaiTCmodels::findOrFail($id); // lấy dữ liệu theo id
     $db = loaiTCmodels::where('MaLoaiThuCung', $id)->first();
+ 
     return view('admin.loaithucung.read', ['db'=>$db]); // trả về view và truyền biến $data vào
 }
 

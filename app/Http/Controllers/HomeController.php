@@ -11,8 +11,10 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index(){
-        return view('index');
+        $loaithucung = ThuCungmodels::get();
+        return view('index' ,  compact('loaithucung'));
     }
+
     public function grid(){
         $loaiTC =  loaiTCmodels::all();
         $sps = ThuCungmodels::limit(6)->get();
@@ -32,7 +34,8 @@ class HomeController extends Controller
     // }
     public function details($id = null){
         $loaiTC = loaiTCmodels::all();
-        $sps =    ThuCungmodels::where('MaGiongThuCung','=',$id)->get();
+        $sps =    ThuCungmodels::where('MaThuCung','=',$id)->get();
+
         return view('details',['ThuCung' =>  $sps , 'loaiTC' => $loaiTC]);
     }
     public function LoaiTC(){
@@ -41,18 +44,17 @@ class HomeController extends Controller
         return view('index',['ThuCung' =>  $sps , 'loaiTC' => $loaiTC]);
     }
 
-    // public function categoryType(){
-    //     $ThuCung = DB::table('thucung')
-    //     ->join('giongthucung', 'thucung.MaGiongThuCung', 'giongthucung.MaGiongThuCung')
-    //     ->join('loaithucung', 'loaithucung.MaLoaiThuCung', 'giongthucung.MaLoaiThuCung')
-    //     ->select('thucung.*')
-    //     ->where('loaithucung.MaLoaiThuCung', 1)
-    //     ->get();
-    //     // dd($ThuCung);
-    //     return view('dogs', compact('ThuCung'));
-    // }
+    public function categoryType($id){
+        $loaithucung = ThuCungmodels::where('MaLoaiThuCung',$id)->get();
 
 
+            $giongthus = GiongThuCungmodels::where('MaLoaiThuCung',$id)->get();
+
+
+
+
+        return view('dogs', compact('loaithucung','giongthus'));
+    }
 
     public function cart(){
         return view('cart');
@@ -79,5 +81,13 @@ class HomeController extends Controller
     }
     public function register(){
         return view('register');
+    }
+
+    public function TimKiem(Request $request){
+        $keywords = $request->keywords_submit;
+
+        $search_thucung = DB::table('thucung')->where('TenThuCung','like','%'.$keywords.'%')->get();
+
+        return view('search')->with('search_thucung', $search_thucung);
     }
 }

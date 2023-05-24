@@ -15,8 +15,8 @@
                                         <tr>
                                             <th>Mã Nhân Viên</th>
                                             <th>Tên Nhân Viên</th>
-                                            <th>SĐT</th>
                                             <th>Địa Chỉ</th>
+                                            <th>SĐT</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                             <th>Xem</th>
@@ -30,7 +30,6 @@
                                                 <td>{{$loai->TenNhanVien}}</td>
                                                 <td>{{$loai->DiaChi}}</td>
                                                 <td>{{$loai->SDT}}</td>
-                                                <td>{{$loai->Email}}</td>
                                                 <td><a href="{{route('admin.NhanVien.edit',$loai->MaNhanVien)}}" class='btn btn-warning fa fa-pencil'> Sửa</a></td>
                                                 <td> <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{route('admin.NhanVien.delete',$loai->MaNhanVien)}}" class='btn btn-danger fa fa-trash'>Xóa</a></td>
                                                 <td><a href="{{route('admin.NhanVien.show',$loai->MaNhanVien)}}" class='btn btn-warning fa fa-pencil'>Xem</a></td>
