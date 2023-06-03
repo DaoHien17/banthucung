@@ -19,7 +19,8 @@ class ThuCungController extends Controller
         ->select('thucung.*', 'NhaCungCap.*', 'GiongThuCung.*')
         ->get();
         // dd($sp);
-        return view('admin.thucung.index',['sp'=>$sp]);
+        $index=1;
+        return view('admin.thucung.index',['sp'=>$sp, 'index'=>$index]);
     }
 
     public function create(){
@@ -51,6 +52,7 @@ class ThuCungController extends Controller
     public function edit( $id) {
 
         $db = loaiTCmodels::pluck('TenLoaiThuCung','MaLoaiThuCung');
+        $giong = GiongThuCungmodels::pluck('TenGiongThucung','MaGiongThuCung');
         $ncc = NCCmodels::pluck('TenNCC','MaNCC');
         $sp = DB::table('thucung')
         ->join('NhaCungCap', 'thucung.MaNCC', '=', 'NhaCungCap.MaNCC' )
@@ -60,7 +62,8 @@ class ThuCungController extends Controller
         ->where('thucung.MaThuCung',$id)
         ->first();
 
-        return view('admin.thucung.update', ['db' => $db, 'sp' => $sp,'ncc'=>$ncc]);
+
+        return view('admin.thucung.update', ['db' => $db, 'sp' => $sp,'ncc'=>$ncc,'giong'=>$giong]);
     }
 
 

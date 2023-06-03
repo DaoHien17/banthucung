@@ -13,23 +13,27 @@
                             value="{{ $sp->MaThuCung }}" aria-label="Username" aria-describedby="basic-addon1" readonly>
                     </div>
 
-                    <label for="hoten">Tên loại</label>
+                    <label for="MaLoai">Tên loại</label>
                     <div class="input-group mb-3">
 
-                        <select class="form-control" name="MaLoaiThuCung" id="MaLoai">
+                        <select class="form-control" name="LoaiTC" id="MaLoai">
                         @foreach ($db as $key => $value)
                               <option value="{{ $key }}" @if($key == old('id',$sp->MaLoaiThuCung)) selected @endif>
                                   {{ $value }}
                               </option>
                               @endforeach
-
                         </select>
                     </div>
                     <label for="TenGiongThuCung">Tên Giống Thú Cưng</label>
                     <div class="input-group mb-3">
 
-                        <input class="d-none" name="MaGiongThuCung" value="{{ $sp->MaGiongThuCung }}">
-                        <input class="form-control" type="text" name="TenGiongThuCung" value="{{ $sp->TenGiongThuCung }}" placeholder="Nhập tên" aria-label="Username" aria-describedby="basic-addon1">
+                        <select class="form-control" name="MaGiongThuCung" id="MaLoai">
+                            @foreach ($giong as $key => $value)
+                                  <option value="{{ $key }}" @if($key == old('id',$sp->MaGiongThuCung)) selected @endif>
+                                      {{ $value }}
+                                  </option>
+                                  @endforeach
+                            </select>
                     </div>
                     <label for="Tenncc">Tên Nhà Cung Cấp</label>
                     <div class="input-group mb-3">
@@ -42,8 +46,8 @@
                             {{-- <input class="form-control" type="text" name="TenLoaiThuCung" value="{{ $sp->TenLoaiThuCung }}"
                                 placeholder="Nhập tên" aria-label="Username" aria-describedby="basic-addon1"> --}}
                             </select>
-                        <input class="d-none" name="MaNCC" value="{{ $sp->MaNCC }}">
-                        <input class="form-control" type="text" name="Tenncc" value="{{ $sp->TenNCC }}" placeholder="Nhập tên" aria-label="Username" aria-describedby="basic-addon1">
+                        {{-- <input class="d-none" name="MaNCC" value="{{ $sp->MaNCC }}">
+                        <input class="form-control" type="text" name="Tenncc" value="{{ $sp->TenNCC }}" placeholder="Nhập tên" aria-label="Username" aria-describedby="basic-addon1"> --}}
                     </div>
                     <label for="Tenthucung">Tên Thú Cưng</label>
                     <div class="input-group mb-3">

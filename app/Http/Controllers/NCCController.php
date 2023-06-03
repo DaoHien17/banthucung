@@ -43,6 +43,9 @@ class NCCController extends Controller
     {
         NCCmodels::where('MaNCC', $id)->update([
             'TenNCC' => $request->input('TenNCC'),
+            'SDT' => $request->input('SDT'),
+            'DiaChi' => $request->input('DiaChi'),
+            'Email' => $request->input('Email'),
             'updated_at' => now(),
         ]);
 

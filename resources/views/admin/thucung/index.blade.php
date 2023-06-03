@@ -10,6 +10,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <TH>STT</TH>
                                             <th>Mã Thú Cưng</th>
                                             <th>Chọn Loại thú Cưng</th>
                                             <th>Tên Giống</th>
@@ -31,6 +32,7 @@
                                     <tbody>
                                         @foreach($sp as $loai)
                                         <tr>
+                                            <td>{{ $index++ }}</td>
                                                 <td>{{$loai->MaThuCung}}</td>
                                                 <td>{{$loai->MaLoaiThuCung}}</td>
                                                 <td>{{$loai->TenGiongThuCung}}</td>

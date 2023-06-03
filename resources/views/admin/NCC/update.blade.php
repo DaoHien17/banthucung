@@ -1,29 +1,44 @@
 @extends('admin/layout')
 @section('admin/content')
-<form action="{{route('admin.giongthucung.update',['id' => $db->MaGiongThuCung])}}" method="post">
-@csrf
-    <div class="tab-content rounded-bottom">
-    <label for="MaLoaiThuCung">Mã Loại Thú Cưng</label>
-    <div class="input-group mb-3">
-    <span class="input-group-text" id="MaLoaiThuCung">Mã Loai Thú Cưng</span>
-    <input class="form-control" type="text" placeholder="Nhập" name="MaLoaiThuCung" value="{{ $db->MaLoaiThuCung }}" aria-label="Username" aria-describedby="basic-addon1" readonly>
-    </div>
-    <label for="TenGiongThuCung">Tên Giống Thú Cưng</label>
-        <div class="input-group mb-3">
-       <span class="input-group-text" id="TenGiongThuCung">Tên Giống Thú Cưng</span>
-    <input class="form-control" type="text" name="TenGiongThuCung" value="{{ $db->TenGiongThuCung }}" placeholder="Nhập tên" aria-label="Username" aria-describedby="basic-addon1">
-          </div>
-          <label for="GhiChu">Ghi Chú</label>
-        <div class="input-group mb-3">
-       <span class="input-group-text" id="GhiChu">Ghi Chú</span>
-    <input class="form-control" type="text" name="GhiChu" value="{{ $db->GhiChu }}" placeholder="Nhập tên" aria-label="Username" aria-describedby="basic-addon1">
-          </div>
+    <form action="{{ route('admin.NCC.update', ['id' => $db->MaNCC]) }}" method="post">
+        @csrf
+        <div class="tab-content rounded-bottom">
+            <label for="MaNCC">Mã Nhà Cung Cấp</label>
+            <div class="input-group mb-3">
 
+                <input class="form-control" type="text" placeholder="Nhập" name="MaNCC" value="{{ $db->MaNCC }}"
+                    aria-label="Username" aria-describedby="basic-addon1" readonly>
+            </div>
+            <label for="TenNCC">Tên nhà cung cấp</label>
+            <div class="input-group mb-3">
 
-                    <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1158">
-                    <button class="btn btn-primary" type="submit">Sửa</button>
+                <input class="form-control" type="text" name="TenNCC" value="{{ $db->TenNCC }}"
+                    placeholder="Nhập tên" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <label for="SDT">Số điện thoại</label>
+            <div class="input-group mb-3">
 
-                  </div>
-                      </div>
-                    </div>
-</form>
+                <input class="form-control" type="text" name="SDT" value="{{ $db->SDT }}" placeholder="Nhập tên"
+                    aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+            <label for="Email">Email</label>
+            <div class="input-group mb-3">
+
+                <input class="form-control" type="text" name="Email" value="{{ $db->Email }}" placeholder="Nhập email"
+                    aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <label for="DiaChi">Địa chỉ</label>
+            <div class="input-group mb-3">
+
+                <input class="form-control" type="text" name="DiaChi" value="{{ $db->DiaChi }}" placeholder="Nhập email"
+                    aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="tab-pane p-3 active preview" role="tabpanel" id="preview-1158">
+                <button class="btn btn-primary" type="submit">Sửa</button>
+
+            </div>
+        </div>
+        </div>
+    </form>
+@endsection

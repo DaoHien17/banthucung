@@ -14,7 +14,7 @@
                 <div class="breadcrumb__text">
                     <h2 style="color: red">Cats Love Shop</h2>
                     <div class="breadcrumb__option">
-                        <a style="color: red" href="/Home/Index">Trang Chủ</a>
+                        {{-- <a style="color: red" href="/Home/Index">Trang Chủ</a> --}}
                         {{-- @{try
                             {
                                 if (Model.ToList()[0].LoaiThuCung == 10)
@@ -68,17 +68,17 @@
 
                     <div class="row">
                         @foreach ($loaithucung as $ca)
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="{{ $ca->AnhTieuDe }}">
-                                        <ul class="product__item__pic__hover">
+                                        {{-- <ul class="product__item__pic__hover">
                                             <li><a> <i  class="fa fa-heart"></i></a></li>
 
                                             <li><a href=" "class="fa fa-retweet"> </a></li>
                                             <li>
                                                 <a href=" "><i class="fa fa-shopping-cart"></i></a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                     <div class="product__item__text">
                                         <h6><a href="/details/{{ $ca->MaThuCung }}">{{ $ca->TenThuCung }}</a></h6>

@@ -7,11 +7,14 @@ use App\Models\loaiTCmodels;
 use App\Models\ThuCungmodels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index(){
         $loaithucung = ThuCungmodels::get();
+
+
         return view('index' ,  compact('loaithucung'));
     }
 
@@ -46,13 +49,7 @@ class HomeController extends Controller
 
     public function categoryType($id){
         $loaithucung = ThuCungmodels::where('MaLoaiThuCung',$id)->get();
-
-
             $giongthus = GiongThuCungmodels::where('MaLoaiThuCung',$id)->get();
-
-
-
-
         return view('dogs', compact('loaithucung','giongthus'));
     }
 
@@ -61,7 +58,9 @@ class HomeController extends Controller
     }
 
     public function checkout(){
-        return view('checkout');
+        $cartItems = \Cart::getContent();
+
+        return view('checkout',['cart'=>$cartItems]);
     }
 
     public function login(){
@@ -89,5 +88,27 @@ class HomeController extends Controller
         $search_thucung = DB::table('thucung')->where('TenThuCung','like','%'.$keywords.'%')->get();
 
         return view('search')->with('search_thucung', $search_thucung);
+    }
+
+
+    public function checklogin(Request $request ){
+        $this -> validate($request,[
+            'email' => 'required|email:filter',
+            'password' => 'required'
+        ]);
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            // Đăng nhập thành công
+            return redirect()->route('admin.thucung.index');
+        } else {
+            // Đăng nhập thất bại
+            return back()->withErrors([
+                'email' => 'Email hoặc mật khẩu không chính xác.'
+            ]);
+        }
+    }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('home');
     }
 }

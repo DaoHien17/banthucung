@@ -41,11 +41,11 @@ class GiongThuCungController extends Controller
     return view('admin.GiongThuCung.read', ['db'=>$db]); // trả về view và truyền biến $data vào
 }
 
-    public function edit(string $id=''){
+    public function edit($id){
         // $db=loaiTCmodels::find($id);
         $db = GiongThuCungmodels::where('MaGiongThuCung', $id)->first();
-
-        return view('admin.giongthucung.update',['db'=>$db]);
+        $ltc = loaiTCmodels::pluck('TenLoaiThuCung','MaLoaiThucung');
+        return view('admin.giongthucung.update',['db'=>$db,'ltc'=>$ltc]);
     }
 
 
@@ -58,8 +58,9 @@ class GiongThuCungController extends Controller
 
     public function update(Request $request, string $id)
     {
+
         GiongThuCungmodels::where('MaGiongThuCung', $id)->update([
-            'TenLoaiThuCung' => $request->input('TenLoaiThuCung'),
+            'MaLoaiThuCung' => $request->MaLoaiThuCung,
             'TenGiongThuCung' => $request->input('TenGiongThuCung'),
             'GhiChu' => $request->input('GhiChu'),
 

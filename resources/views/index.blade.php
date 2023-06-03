@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Nổi Bật</h2>
+                        <h2 style="font-size: 45px;">Nổi Bật</h2>
                     </div>
                     {{-- <div class="featured__controls">
                     <ul>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="product__item__text">
                                 <h6><a href="/details/{{ $ca->MaThuCung }}">{{ $ca->TenThuCung }}</a></h6>
-                                <h5><a href="">{{ number_format($ca->Gia) }}</a></h5>
+                                <h5><a href="">{{ number_format($ca->Gia) }}</a> VNĐ</h5>
                             </div>
                         </div>
                     </div>

@@ -30,7 +30,7 @@
                                                 <td>{{$loai->TenLoaiThuCung}}</td>
                                                 <td>{{$loai->TenGiongThuCung}}</td>
                                                 <td>{{$loai->GhiChu}}</td>
-                                                <td><a href="{{route('admin.giongthucung.edit',$loai->MaLoaiThuCung)}}" class='btn btn-warning fa fa-pencil'> Sửa</a></td>
+                                                <td><a href="{{route('admin.giongthucung.edit',$loai->MaGiongThuCung)}}" class='btn btn-warning fa fa-pencil'> Sửa</a></td>
                                                 <td> <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{route('admin.giongthucung.delete',$loai->MaGiongThuCung)}}" class='btn btn-danger fa fa-trash'>Xóa</a></td>
                                                 <td><a href="{{route('admin.giongthucung.show',$loai->MaGiongThuCung)}}" class='btn btn-warning fa fa-pencil'>Xem</a></td>
                                         </tr>

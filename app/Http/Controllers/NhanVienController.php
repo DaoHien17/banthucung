@@ -31,10 +31,10 @@ class NhanVienController extends Controller
     return view('admin.NhanVien.read', ['db'=>$db]); // trả về view và truyền biến $data vào
 }
 
-    public function edit(string $id=''){
-        // $db=loaiTCmodels::find($id);
-        $db = NhanVienmodels::where('MaNhanVien', $id)->first();
-        return view('admin.NhanVien.update',['db'=>$db]);
+    public function edit($id){
+
+        $sp = NhanVienmodels::where('MaNhanVien', $id)->first();
+        return view('admin.NhanVien.update',['sp'=>$sp]);
     }
 
 
@@ -43,6 +43,8 @@ class NhanVienController extends Controller
     {
         NhanVienmodels::where('MaNhanVien', $id)->update([
             'TenNhanVien' => $request->input('TenNhanVien'),
+            'SDT' => $request->input('SDT'),
+            'DiaChi' => $request->input('DiaChi'),
             'updated_at' => now(),
         ]);
 

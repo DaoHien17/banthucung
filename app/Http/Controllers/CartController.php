@@ -6,6 +6,7 @@ use App\Models\KhachHangmodels;
 use App\Models\HoaDonBanmodels;
 use App\Models\ChiTietHoaDonBanmodels;
 use Illuminate\Http\Request;
+use App\Models\ThuCungmodels;
 
 class CartController extends Controller
 {
@@ -28,7 +29,7 @@ class CartController extends Controller
                 'image' => $request->image,
             )
         ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
+        session()->flash('success', 'Sản Phẩm Đã Thêm Vào Giỏ Hàng!');
 
         return redirect()->route('cart.list');
     }
@@ -45,7 +46,7 @@ class CartController extends Controller
             ]
         );
 
-        session()->flash('success', 'Item Cart is Updated Successfully !');
+        session()->flash('success', 'Giỏ hàng được cập nhật thành công!');
 
         return redirect()->route('cart.list');
     }
@@ -53,7 +54,7 @@ class CartController extends Controller
     public function removeCart(Request $request)
     {
         \Cart::remove($request->id);
-        session()->flash('success', 'Item Cart Remove Successfully !');
+        session()->flash('success', 'Giỏ hàng xóa thành công!');
 
         return redirect()->route('cart.list');
     }
@@ -62,7 +63,7 @@ class CartController extends Controller
     {
         \Cart::clear();
 
-        session()->flash('success', 'All Item Cart Clear Successfully !');
+        session()->flash('success', 'Xóa tất cả các mặt hàng trong giỏ hàng thành công!');
 
         return redirect()->route('cart.list');
     }
@@ -70,7 +71,7 @@ class CartController extends Controller
     public function checkoutget()
     {
         $cartItems = \Cart::getContent();
-        // dd($cartItems);
+
         return view('checkout', compact('cartItems'));
     }
 
@@ -106,6 +107,10 @@ class CartController extends Controller
         \Cart::clear();
 
         session()->flash('success','Dat hang thanh cong !');
-        return redirect()->route('cart.list');
+        $loaithucung = ThuCungmodels::get();
+
+
+        return view('index' ,  compact('loaithucung'));
+        // return redirect()->route('cart.list');
     }
 }

@@ -41,6 +41,41 @@
                         <div class="card">
                             <header class="card-header">
                                 <h4 class="card-title mt-2">ĐƠN HÀNG CỦA BẠN</h4>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Tên sản phẩm
+                                            </th>
+                                            <th>
+                                                Số lượng
+                                            </th>
+                                            <th>
+                                                Giá
+                                            </th>
+                                            <th>
+                                                Tạm tính
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($cartItems as $item)
+                                        <tr>
+
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->quantity }}</td>
+                                            <td>{{  number_format($item->price) }} VNĐ</td>
+                                            <td>{{ number_format( $item->price * $item->quantity) }}VNĐ</td>
+                                        </tr>
+
+
+                                        @endforeach
+
+
+                                    </tbody>
+                                </table>
+
                             </header>
                             <article class="card-body">
                                 <dl class="dlist-align">

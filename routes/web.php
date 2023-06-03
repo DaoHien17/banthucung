@@ -26,6 +26,9 @@ Route::controller(App\http\Controllers\HomeController::class)->group(function(){
     Route::get('/index','index')->name('home');
     Route::get('/cart','cart')->name('cart');
     Route::get('/contact','contact')->name('contact');
+    Route::get('/login','login')->name('login');
+    Route::get('/logout','logout')->name('logout');
+    Route::get('/checklogin','checklogin')->name('checklogin');
     Route::get('/checkout','checkout')->name('checkout');
     Route::get('/blog','blog')->name('blog');
     Route::get('/grid','grid')->name('grid');
@@ -57,7 +60,7 @@ Route::controller(App\Http\Controllers\GiongThuCungController::class)->group(fun
 
 });
 
-Route::controller(App\Http\Controllers\ThuCungController::class)->group(function(){
+Route::controller(App\Http\Controllers\ThuCungController::class)->middleware('auth')->group(function(){
     Route::get('/admin/thucung/index','index')->name('admin.thucung.index');
     Route::get('/admin/thucung/create','create')->name('admin.thucung.create');
     Route::post('/admin/thucung/store','store')->name('admin.thucung.store');
@@ -84,6 +87,12 @@ Route::controller(App\Http\Controllers\NhanVienController::class)->group(functio
     Route::post('/admin/NhanVien/update/{id}','update')->name('admin.NhanVien.update');
     Route::get('/admin/NhanVien/delete/{id}','destroy')->name('admin.NhanVien.delete');
     Route::get('/admin/NhanVien/read/{id}', 'show')->name('admin.NhanVien.show');
+});
+Route::controller(App\Http\Controllers\HoaDonBanController::class)->group(function(){
+    Route::get('/admin/HoaDonBan/index','index')->name('admin.HoaDonBan.index');
+    Route::post('/admin/HoaDonBan/update/{id}','update')->name('admin.HoaDonBan.update');
+    Route::get('/admin/HoaDonBan/delete/{id}','destroy')->name('admin.HoaDonBan.delete');
+    Route::get('/admin/HoaDonBan/show/{id}', 'show')->name('admin.HoaDonBan.show');
 });
 
 Route::controller(App\Http\Controllers\CartController::class)->group(function(){

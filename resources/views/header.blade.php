@@ -19,15 +19,23 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                            <div class="header__top__right__social">
+                            {{-- <div class="header__top__right__social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-linkedin"></i></a>
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
+                            </div> --}}
 
                             <div class="header__top__right__auth">
-                                <a href="/admin/loaithucung/index"><i class="fa fa-user"></i> Đăng Nhập</a>
+
+                                @if(Auth::user()!=null)
+                                    <a href="{{ route('admin.thucung.index') }}"><i class="fa fa-user"></i> Vào trang quản trị</a>
+                                    <a href="{{ route('logout') }}"><i class="fa fa-user"></i> Đăng xuất</a>
+
+                                @else
+                                    <a href="{{ route('login') }}"><i class="fa fa-user"></i> Đăng nhập</a>
+                               @endif
+
                             </div>
                         </div>
                     </div>
@@ -73,7 +81,7 @@
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero">
+    <section class="hero hero-normal">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
